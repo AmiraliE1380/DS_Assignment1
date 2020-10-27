@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class PeakFinder {
     private final Scanner scanner;
-    private final int[] array = {3, 40, 55, 155, 23, 7, 568, 7, 3};
+    private int[] array;
     private int size;
     
     public PeakFinder(Scanner scanner) {
@@ -14,9 +14,11 @@ public class PeakFinder {
     }
 
     private void run() {
+        array = DataGenerator.generate();
         System.out.println("1.Linear search for peak\n2.Binary search for peak");
         int method = Integer.parseInt(scanner.nextLine());
         int index;
+        long startTime = System.currentTimeMillis();
         size = array.length;
         if(size == 1)
             index = 1;
@@ -28,7 +30,8 @@ public class PeakFinder {
             index = linearSearch(size);
         else
             index = binarySearch(0, size / 2, size - 1);
-        System.out.println("index = " + index);
+        long time = System.currentTimeMillis() - startTime;
+        System.out.println("index = " + index + "\nspent time for algorithm = " + time);
     }
 
     private int binarySearch(int firstIndex, int middle, int last) {
