@@ -14,7 +14,7 @@ public class PeakFinder {
     }
 
     private void run() {
-        array = DataGenerator.generate();
+        array = DataGenerator.generateArray();
         System.out.println("1.Linear search for peak\n2.Binary search for peak");
         int method = Integer.parseInt(scanner.nextLine());
         int index;
