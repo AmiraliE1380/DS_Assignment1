@@ -4,6 +4,7 @@ public class MatrixPeakFinder {
     private final Scanner scanner;
     private int[][] matrix;
     private int size;
+    private long startTime;
 
     public MatrixPeakFinder(Scanner scanner) {
         this.scanner = scanner;
@@ -14,21 +15,17 @@ public class MatrixPeakFinder {
     }
 
     private void run() {
-        matrix = new int[][]{
-                {10, 8, 10, 10},
-                {14, 13, 12, 11},
-                {15, 9, 11, 21},
-                {16, 17, 19, 20}
-        };
+        matrix = DataGenerator.generateMatrix();
                 // DataGenerator.generateMatrix();
         int rows = matrix.length;
         int columns = matrix[0].length;
         System.out.println("1.Linear search for peak\n2.Binary search for peak");
         int method = Integer.parseInt(scanner.nextLine());
+        startTime = System.currentTimeMillis();
         if(method == 1)
             linearSearch(rows, columns);
         else
-            binarySearch(rows, columns, columns / 2);
+            binarySearch(rows, columns, columns / 2, 0, columns);
 
     }
 
@@ -61,13 +58,12 @@ public class MatrixPeakFinder {
     private void found(int i, int j) {
         i++;
         j++;
-        System.out.println("row = " + i + " column = " + j);
+        long spentTime = System.currentTimeMillis() - startTime;
+        System.out.println("row = " + i + " column = " + j + "\nSpent time = " + spentTime);
         System.exit(0);
     }
-
     //All the methods below, belong to the binarySearch solution:
-
-    private void binarySearch(int rows, int columns, int middle) {
+    private void binarySearch(int rows, int columns, int middle, int firstIndex, int lastIndex) {
         int maxMidIndex = findMaxInColumn(rows, middle, 0);
         if(middle == 0 || middle == columns - 1)
             found(maxMidIndex, middle);
@@ -75,11 +71,10 @@ public class MatrixPeakFinder {
                 matrix[maxMidIndex][middle] >= matrix[maxMidIndex][middle + 1])
             found(maxMidIndex, middle);
         else if(matrix[maxMidIndex][middle] < matrix[maxMidIndex][middle - 1])
-            binarySearch(rows, columns, middle - middle / 2);
+            binarySearch(rows, columns, (firstIndex + middle - 1) / 2, firstIndex, middle - 1);
         else
-            binarySearch(rows, columns, middle + middle / 2);
+            binarySearch(rows, columns, (middle + lastIndex + 1) / 2, middle + 1, lastIndex);
     }
-
     private int findMaxInColumn(int rows, int column, int max) {
         int maxIndex = 0;
         for(int i = 0; i < rows; i++) {
