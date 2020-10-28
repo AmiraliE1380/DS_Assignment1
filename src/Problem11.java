@@ -1,5 +1,5 @@
 public class Problem11 {
-    private int[] array = {1, 3, 2, 16, 4, 5, 6, 7, 8, 9, 10, 12, 11, 13, 14, 55};
+    private int[] array = {1, 3, 2, 16, 4, 6, 5, 7, 9, 9, 1, 12, 11, 13, 12, 55};
     private int[] peaksIndex;
     private int numOfPeaks = 0;
     private int n;
@@ -13,6 +13,8 @@ public class Problem11 {
         findPeaks(0);
         if(numOfPeaks <= Math.sqrt(n)) {
             InsertionSort.sort(array, n);
+        } else if(numOfPeaks <= Math.pow(n, 0.75)) {
+
         }
         print(array);
     }
@@ -41,6 +43,6 @@ public class Problem11 {
 
     private void print(int[] array) {
         for(int i : array)
-            System.out.println(i + " ");
+            System.out.print(i + " ");
     }
 }
