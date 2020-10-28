@@ -1,5 +1,5 @@
 public class InsertionSort {
-    private void sort(int[] array, int size) {
+    private static void sort(int[] array, int size) {
         for (int i = 0, j; i < size; i++) {
             if(i != 0) {
                 j = i - 1;
