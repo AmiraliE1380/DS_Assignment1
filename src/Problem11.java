@@ -14,7 +14,9 @@ public class Problem11 {
         if(numOfPeaks <= Math.sqrt(n)) {
             InsertionSort.sort(array, n);
         } else if(numOfPeaks <= Math.pow(n, 0.75)) {
-
+            divideAndMerge();
+        } else {
+            divideAndSort();
         }
         print(array);
     }
@@ -39,6 +41,31 @@ public class Problem11 {
     private void found(int index) {
         peaksIndex[numOfPeaks] = index;
         numOfPeaks++;
+    }
+
+    private void divideAndMerge() {
+        int[][] dividedArrays = divide();
+    }
+
+    private int[][] divide() {
+        for(int i = 0 ; i < numOfPeaks; i++) {
+            for(int j = 0; j < 0;)
+            {}
+            //TODO
+        }
+        return new int[0][];
+    }
+
+    private void divideAndSort() {
+        int[] finalArray = new int[n];
+        int[] extractedPeaks = new int[numOfPeaks];
+        for(int i = 0; i < numOfPeaks; i++) {
+            extractedPeaks[i] = array[peaksIndex[i]];
+        }
+        InsertionSort.sort(extractedPeaks, extractedPeaks.length);
+        for(int i = 0; i < numOfPeaks;i++) {
+            finalArray[i] =  extractedPeaks[i];
+        }
     }
 
     private void print(int[] array) {

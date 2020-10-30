@@ -31,8 +31,9 @@ public class Problem7 {
             } else if(array[i] <= min3 && i > 2) {
                 min3 = array[i];
             }
+            if(min1 + min2 + min3 < max)
+                return true;
         }
-        System.out.println(min1 + " " + min2 + " " + min3 + " " + max + "\n");
         return min1 + min2 + min3 < max;
     }
 

@@ -1,9 +1,9 @@
 public class problem10 {
-    private static void recursiveSelectionSort(int[] array, int size, int unsortedIndex) {
+    private static void recursiveInsertionSort(int[] array, int size, int unsortedIndex) {
         if(unsortedIndex == size)
             return;
         shift(array, unsortedIndex);
-        recursiveSelectionSort(array, size, unsortedIndex + 1);
+        recursiveInsertionSort(array, size, unsortedIndex + 1);
     }
 
     private static void shift(int[] array, int index) {
@@ -18,7 +18,7 @@ public class problem10 {
 
     public static void main(String[] args) {
         int[] array = {10, 9, 87238, 92, 4, 3, 2, 1, 1, 8};
-        recursiveSelectionSort(array, array.length, 0);
+        recursiveInsertionSort(array, array.length, 0);
         for(int i : array)
             System.out.print(i + " ");
     }
